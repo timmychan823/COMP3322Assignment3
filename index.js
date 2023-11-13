@@ -3,7 +3,6 @@ var whichOneIsClicked
 
 function drag(event){
     event.dataTransfer.setData("dragging_component",event.target.id)
-    console.log(event.target.id)
 }
 
 function drop(event){
@@ -13,7 +12,6 @@ function drop(event){
         var clone = document.getElementById(data).cloneNode(true)
         document.getElementById(data).remove()
         event.target.parentNode.insertBefore(clone,event.target.nextSibling)
-        console.log("hello")
         event.target.style.borderStyle = 'dashed'
         event.target.style.borderWidth = '1px' 
         event.target.style.borderColor= 'red'
@@ -45,16 +43,13 @@ function notEyeIsClicked(){
 }
 
 function hide(event){
-    console.log(event.target)
     if (event.target.parentNode.className=="Hidden"){
         event.target.parentNode.className="Visible"
         whichOneIsClicked=[event.target.parentNode,'first']
-        console.log(whichOneIsClicked)
 
     }else{
         event.target.parentNode.className="Hidden"
         whichOneIsClicked=[event.target.parentNode,'last']
-        console.log(whichOneIsClicked)
         
     }
 }
@@ -121,12 +116,9 @@ window.onload=()=>{
 
             document.cookie = "order="+order
 
-            /*fetch("index.php",{method: "POST"}) //working on this
+            fetch("index.php",{method: "PUT"}) //working on this
             .then(response => {
-                response.json().then(x => {
-                    console.log(x)
-
-                })
+               console.log(response.status)
             })
             .catch(err=>{console.log("Cant send error")})
 
